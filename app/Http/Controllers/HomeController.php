@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Post;
 
 
 class HomeController extends Controller
@@ -36,6 +37,12 @@ class HomeController extends Controller
        // $users = User::all();
 
         $user = Auth::user();
+        $post = new Post();
+        $post->title = 'My Post';
+        $post->body = 'Another body';
+
+        $user->posts()->save($post);
+
         //you need to call posts to retrieve records without the ()
         $posts = $user->posts;
 
